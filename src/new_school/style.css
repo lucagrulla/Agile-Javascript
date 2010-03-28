@@ -1,0 +1,20 @@
+input {
+    margin-top:2px;
+}
+
+label {
+  float:left;
+  width:5%;
+  margin-right:0.5em;
+  padding-top:0.2em;
+  text-align:right;
+  font-weight:bold;
+}
+
+.message {
+    background:#d3d3d3;
+}
+
+.error {
+    color:red;
+}
