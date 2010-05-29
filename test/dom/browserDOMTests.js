@@ -1,5 +1,5 @@
 TestCase("BrowserDOMTests", {
-    testSetValueSetsTheValueCorrectly : function() {
+    test_set_value_sets_the_value_correctly : function() {
         $("body").append("<input id='testId' type='text'/>");
 
         browser.DOM.setValue("#testId", "Hello");
@@ -7,14 +7,14 @@ TestCase("BrowserDOMTests", {
         assertEquals($("#testId").val(), "Hello");
     },
 
-    testGetValueGetsTheValueCorrectly : function() {
+    test_get_value_gets_the_value_correctly : function() {
         $("body").append("<input id='testId' type='text'/>");
         $("#testId").val("Hello Again");
 
         assertEquals(browser.DOM.getValue("#testId"), "Hello Again");
     },
 
-    testSetTextSetsTheTextCorrectly : function() {
+    test_set_text_sets_the_text_correctly : function() {
         $("body").append("<div id='testId'/>");
 
         browser.DOM.setText("#testId", "Hello Text");
@@ -22,7 +22,7 @@ TestCase("BrowserDOMTests", {
         assertEquals($("#testId").text(), "Hello Text");
     },
 
-    testAddClickHandlerAddsEventHandlerCorrectly : function() {
+    test_add_click_handler_adds_event_handler_correctly : function() {
         $("body").append("<input id='testId' type='button'/>");
 
         var eventHandlerCalled = false;
@@ -34,7 +34,7 @@ TestCase("BrowserDOMTests", {
         $("#testId").click();
     },
 
-    testAddClassAddsTheClassCorrectly : function() {
+    test_add_class_adds_the_class_correctly : function() {
         $("body").append("<div id='testId'/>");
 
         browser.DOM.addClass("#testId", "error");
@@ -42,7 +42,7 @@ TestCase("BrowserDOMTests", {
         assertTrue($("#testId").hasClass("error"));
     },
 
-    testRemoveClassRemovesTheClassCorrectly : function() {
+    test_remove_class_removes_the_class_correctly : function() {
         $("body").append("<div id='testId' class='error'/>");
 
         browser.DOM.removeClass("#testId", "error");

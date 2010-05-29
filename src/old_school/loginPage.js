@@ -1,46 +1,47 @@
-    loginPage = {
+function LoginPage() {
+    this.setup = function() {
+        $("#loginButton").click(this.login)
+    },
 
-        setup : function() {
-            $("#loginButton").click(loginPage.login)
-        },
+    this.login = function (e) {
+        var username = $("#username").val();
+        var password = $("#password").val();
 
-        login : function (e) {
-            var username = $("#username").val();
-            var password = $("#password").val();
-
-            if (username && username !== "" && password && password !== "") {
-                $.ajax({
-                    url: "/login",
-                    type:"POST",
-                    data:{username:username, password:password},
-                    success: loginPage.showLoginSuccessful,
-                    error: loginPage.showLoginError
-                });
-            } else {
-                loginPage.showInvalidCredentialsError();
-            }
-            e.preventDefault();
-        },
-
-        showLoginSuccessful : function() {
-            $("#message").text("Welcome back!");
-            $("#message").removeClass("Welcome back!");
-            $("#message").fadeIn();
-        },
-
-        showInvalidCredentialsError : function() {
-            $("#message").text("Please enter your login details");
-            $("#message").addClass("error");
-            $("#message").fadeIn();
-        },
-
-        showLoginError : function() {
-            $("#message").text("We were unable to log you in with the details supplied");
-            $("#message").addClass("error");
-            $("#message").fadeIn();
+        if (username && username !== "" && password && password !== "") {
+            $.ajax({
+                url: "/login",
+                type:"POST",
+                data:{username:username, password:password},
+                success: loginPage.showLoginSuccessful,
+                error: loginPage.showLoginError
+            });
+        } else {
+            loginPage.showInvalidCredentialsError();
         }
-    };
+        e.preventDefault();
+    },
 
-    $(document).ready(function() {
-        loginPage.setup();
-    });
+    this.showLoginSuccessful = function() {
+        $("#message").text("Welcome back!");
+        $("#message").removeClass("Welcome back!");
+        $("#message").fadeIn();
+    },
+
+    this.showInvalidCredentialsError = function() {
+        $("#message").text("Please enter your login details");
+        $("#message").addClass("error");
+        $("#message").fadeIn();
+    },
+
+    this.showLoginError = function() {
+        $("#message").text("We were unable to log you in with the details supplied");
+        $("#message").addClass("error");
+        $("#message").fadeIn();
+    }
+
+};
+
+$(document).ready(function() {
+    var loginPage = new LoginPage();
+    loginPage.setup();
+});

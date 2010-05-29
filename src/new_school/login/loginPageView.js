@@ -1,38 +1,25 @@
-    function LoginPageView() {
-        return createApi();
+function LoginPageView() {
+    this.getUsername = function() {
+        return browser.DOM.getValue("#username");
+    };
 
-        function createApi() {
-            return {
-                getUsername : getUsername,
-                getPassword : getPassword,
-                addLoginHandler : addLoginHandler,
-                showInvalidCredentialsError : showInvalidCredentialsError,
-                showLoginSuccessful : showLoginSuccessful,
-                showLoginError : showLoginError
-            }
-        }
+    this.getPassword = function() {
+        return browser.DOM.getValue("#password");
+    };
 
-        function getUsername() {
-            return browser.DOM.getValue("#username");
-        }
+    this.addLoginHandler= function(callback) {
+        browser.DOM.addClickHandler("#loginButton", callback);    
+    };
 
-        function getPassword() {
-            return browser.DOM.getValue("#password");
-        }
-    
-        function addLoginHandler(callback) {
-            browser.DOM.addClickHandler("#loginButton", callback);
-        }
+    this.showLoginSuccessful = function() {
+        browser.Display.showMessage("#message", "Welcome back!");
+    };
 
-        function showLoginSuccessful() {
-            browser.Display.showMessage("#message", "Welcome back!");
-        }
+    this.showInvalidCredentialsError = function() {
+        browser.Display.showError("#message", "Please enter your login details");
+    };
 
-        function showInvalidCredentialsError() {
-            browser.Display.showError("#message", "Please enter your login details");
-        }
-
-        function showLoginError() {
-            browser.Display.showError("#message", "We were unable to log you in with the details supplied");
-        }
-    }
+    this.showLoginError = function() {
+        browser.Display.showError("#message", "We were unable to log you in with the details supplied");
+    };
+}
