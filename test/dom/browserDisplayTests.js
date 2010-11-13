@@ -7,22 +7,13 @@ TestCase("BrowserDisplayTests", {
         mockControl.verify();
     },
 
-    test_show_message_displays_message_correctly : function() {
-        var browserDomMock = mockControl.createStrictMock(browser.DOM);
+    test_show_error_displays_error_correctly: function() {
 
-        browserDomMock.expects().setText("#message", "message");
-        browserDomMock.expects().removeClass("#message", "error");
-        browserDomMock.expects().fadeIn("#message");
+        /*:DOC += <div id="message" class="message"></div> */
 
-        browser.Display.showMessage("#message", "message");
-    },
+        browser.Animations.showError("#message", "error message");
 
-    test_show_error_displays_error_correctly : function() {
-        var browserDomMock = mockControl.createStrictMock(browser.DOM);
-        browserDomMock.expects().setText("#error", "error");
-        browserDomMock.expects().addClass("#error", "error");
-        browserDomMock.expects().fadeIn("#error");
-
-        browser.Display.showError("#error", "error");
+        assertEquals($("#message").text(), "error message");
+        assertTrue($("#message").hasClass("error"));
     }
 });
