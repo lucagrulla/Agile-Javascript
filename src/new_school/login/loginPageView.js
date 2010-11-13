@@ -1,25 +1,25 @@
 function LoginPageView() {
     this.getUsername = function() {
-        return browser.DOM.getValue("#username");
+        return $("#username").val();
     };
 
     this.getPassword = function() {
-        return browser.DOM.getValue("#password");
+        return $("#password").val();
     };
 
     this.addLoginHandler= function(callback) {
-        browser.DOM.addClickHandler("#loginButton", callback);    
+        $("#loginButton").click(function(e) {callback(e)});
     };
 
     this.showLoginSuccessful = function() {
-        browser.Display.showMessage("#message", "Welcome back!");
+        browser.Animations.showMessage("#message", "Welcome back!");
     };
 
     this.showInvalidCredentialsError = function() {
-        browser.Display.showError("#message", "Please enter your login details");
+        browser.Animations.showError("#message", "Please enter your login details");
     };
 
     this.showLoginError = function() {
-        browser.Display.showError("#message", "We were unable to log you in with the details supplied");
+        browser.Animations.showError("#message", "We were unable to log you in with the details supplied");
     };
 }
